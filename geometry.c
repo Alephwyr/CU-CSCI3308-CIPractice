@@ -69,3 +69,17 @@ void coord_2d_midpoint(coord_2d_t* mid, const coord_2d_t* a, const coord_2d_t* b
     mid->y = ((a->y + b->y) / 2.0 );
 
 }
+
+double coord_2d_area_triangle(const coord_2d_t *a, const coord_2d_t *b, const coord_2d_t *c){
+	float area;
+	float A = sqrt((double)(b->x-a->x) * (b->x-a->x) + (b->y-a->y) * (b->y-a->y));
+    float B = sqrt((double)(b->x-c->x) * (b->x-c->x) + (b->y-c->y) * (b->y-c->y));
+    float C = sqrt((double)(a->x-c->x) * (a->x-c->x) + (a->y-c->y) * (a->y-c->y));
+ 
+    // Heron's formula for area calculation
+    // area = sqrt( s * (s-a) * (s-b) * (s-c))
+    float s = (A + B + C) / 2;
+ 
+    area = sqrt( s * (s-A) * (s-B) * (s-C));
+ 
+    return area;}
